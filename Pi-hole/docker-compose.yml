@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      # DNS Ports
+      - "53:53/tcp"
+      - "53:53/udp"
+      # Puerto personalizado para la interfaz web (HTTP)
+      - "80:80/tcp"
+      # Default HTTPS Port. FTL will generate a self-signed certificate
+      - "443:443/tcp"
+      # Habilita el puerto DHCP (descomenta si quieres que Pi-hole sea el servidor DHCP)
+      - "67:67/udp"
+    environment:
+      # Zona horaria para Guayaquil, Ecuador
+      TZ: 'America/Guayaquil'
+      # Contraseña personalizada para la interfaz web
+      FTLCONF_webserver_api_password: 'rsbri2024.11.19M,11M'
+      # Acepta consultas de todas las interfaces (necesario para que el router use Pi-hole)
+      FTLCONF_dns_listeningMode: 'all'
+      # Opcional: Configura el rango DHCP (ajusta según tu red)
+      # FTLCONF_dhcp_range: '192.168.110.100,192.168.110.200,24h'
+    # Volumes store your data between container upgrades
+    volumes:
+      # For persisting Pi-hole's databases and common configuration file
+      - './etc-pihole:/etc/pihole'
+      # Uncomment the below if you have custom dnsmasq config files that you want to persist
+      #- './etc-dnsmasq.d:/etc/dnsmasq.d'
+    cap_add:
+      # Required if you are using Pi-hole as your DHCP server
+      - NET_ADMIN
+      # Required if you are using Pi-hole as your NTP client
+      - SYS_TIME
+    restart: unless-stopped
+    network_mode: "host"  # Usa modo host para simplificar la red (recomendado para DHCP)
