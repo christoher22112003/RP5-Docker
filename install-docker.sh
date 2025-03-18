@@ -45,6 +45,9 @@ EOF
 # Habilitar el servicio para que se ejecute después del reinicio
 sudo systemctl enable docker-test.service
 
+# Crear un archivo de marcador para indicar que Docker se instaló
+echo "docker_installed" > /tmp/docker_installed.flag
+
 # Reiniciar el sistema
 echo "Reiniciando el sistema para aplicar los cambios..."
 sudo reboot

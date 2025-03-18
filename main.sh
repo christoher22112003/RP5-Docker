@@ -19,6 +19,14 @@ ejecutar_script() {
 
 # Ejecutar scripts en orden
 ejecutar_script "/home/christopher-muzo/RP5-Docker/install_docker.sh"
+
+# Configurar el script para continuar la instalación después del reinicio
+sudo cp "/home/christopher-muzo/RP5-Docker/continue-installation.sh" /etc/init.d/
+sudo chmod +x /etc/init.d/continue-installation.sh
+sudo update-rc.d continue-installation.sh defaults
+
+# Nota: El sistema se reiniciará después de instalar Docker.
+
 ejecutar_script "/home/christopher-muzo/RP5-Docker/install_portainer.sh"
 ejecutar_script "/home/christopher-muzo/RP5-Docker/install_pihole.sh"
 
