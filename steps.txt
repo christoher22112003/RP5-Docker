@@ -6,7 +6,7 @@ Pasos realizados:
 
 2. Después del reinicio, se ejecuta el archivo 2Smain.sh:
    - Llama a docker-setup/verify-docker.sh para verificar la instalación de Docker.
-   - Llama a services/install_portainer.sh para instalar Portainer.
+   - Llama a services/install_portainer.sh para instalar Portainer (ahora verifica si ya está instalado antes de intentar instalarlo).
    - Llama a services/install_pihole.sh para instalar Pi-hole.
 
 3. Se creó una carpeta `logs` para almacenar los logs de errores generados por los scripts de instalación:
@@ -16,6 +16,8 @@ Pasos realizados:
 4. Se corrigieron las rutas en todos los scripts para que sean relativas dinámicas, asegurando que funcionen en cualquier ubicación del sistema.
 
 5. Se corrigió el script `install-docker.sh` para instalar Docker Compose si no está instalado.
+
+6. Se corrigió el script `install_portainer.sh` para omitir la instalación si Portainer ya está instalado.
 
 Archivos utilizados (rama principal `main`):
 - scripts/1Smain.sh

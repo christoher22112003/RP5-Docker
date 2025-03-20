@@ -14,6 +14,13 @@ RESET="\e[0m"
 # Crear carpeta de logs si no existe
 mkdir -p "$ERROR_DIR"
 
+# Verificar si Portainer ya está instalado
+echo -e "${YELLOW}Verificando si Portainer ya está instalado...${RESET}"
+if docker ps --format '{{.Names}}' | grep -q "^portainer$"; then
+    echo -e "${GREEN}Portainer ya está instalado. Omitiendo instalación.${RESET}"
+    exit 0
+fi
+
 # Crear volumen Docker para Portainer
 echo -e "${YELLOW}Creando volumen Docker para Portainer...${RESET}"
 docker volume create portainer_data >> "$ERROR_LOG" 2>&1

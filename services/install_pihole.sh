@@ -14,6 +14,13 @@ RESET="\e[0m"
 # Crear carpeta de logs si no existe
 mkdir -p "$ERROR_DIR"
 
+# Verificar si Pi-hole ya está instalado
+echo -e "${YELLOW}Verificando si Pi-hole ya está instalado...${RESET}"
+if docker ps --format '{{.Names}}' | grep -q "^pihole$"; then
+    echo -e "${GREEN}Pi-hole ya está instalado. Omitiendo instalación.${RESET}"
+    exit 0
+fi
+
 # Verifica si docker-compose está instalado
 echo -e "${YELLOW}Verificando si docker-compose está instalado...${RESET}"
 if ! command -v docker-compose &> /dev/null; then
