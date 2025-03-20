@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # Variables
-ERROR_LOG="$HOME/Escritorio/errores_instalacion.log"
+ERROR_DIR="$(pwd)/errores"
+ERROR_LOG="$ERROR_DIR/errores_instalacion.log"
+
+# Crear carpeta de errores si no existe
+mkdir -p "$ERROR_DIR"
 
 # Limpiar archivo de errores previo
 > "$ERROR_LOG"
@@ -17,17 +21,13 @@ ejecutar_script() {
     fi
 }
 
-# Ejecutar scripts en orden
-ejecutar_script "/home/christopher-muzo/RP5-Docker/install_docker.sh"
+# Verificar la instalación de Docker
+ejecutar_script "/home/christopher-muzo/RP5-Docker/docker-setup/verify-docker.sh"
 
-# Configurar el script para continuar la instalación después del reinicio
-sudo cp "/home/christopher-muzo/RP5-Docker/continue-installation.sh" /etc/init.d/
-sudo chmod +x /etc/init.d/continue-installation.sh
-sudo update-rc.d continue-installation.sh defaults
-
-# Nota: El sistema se reiniciará después de instalar Docker.
-
+# Instalar Portainer
 ejecutar_script "/home/christopher-muzo/RP5-Docker/install_portainer.sh"
+
+# Instalar Pi-hole
 ejecutar_script "/home/christopher-muzo/RP5-Docker/install_pihole.sh"
 
 echo "Instalación completada con éxito."

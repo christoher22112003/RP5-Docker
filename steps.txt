@@ -1,0 +1,22 @@
+Pasos realizados:
+
+1. Se ejecuta el archivo 1Smain.sh:
+   - Llama a docker-setup/install-docker.sh para instalar Docker.
+   - Reinicia el sistema.
+
+2. Después del reinicio, se ejecuta el archivo 2Smain.sh:
+   - Llama a docker-setup/verify-docker.sh para verificar la instalación de Docker.
+   - Llama a install_portainer.sh para instalar Portainer.
+   - Llama a install_pihole.sh para instalar Pi-hole.
+
+Archivos utilizados:
+- 1Smain.sh
+- 2Smain.sh
+- docker-setup/install-docker.sh
+- docker-setup/verify-docker.sh
+- install_portainer.sh
+- install_pihole.sh
+
+Archivos eliminados:
+- main.sh
+- continue-installation.sh

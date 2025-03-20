@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Variables
+ERROR_DIR="$(pwd)/errores"
+ERROR_LOG="$ERROR_DIR/docker_install_error.log"
+
+# Crear carpeta de errores si no existe
+mkdir -p "$ERROR_DIR"
+
 # Instalar Docker
 echo "Descargando e instalando Docker..."
 sudo curl -fsSL https://get.docker.com/ -o get-docker.sh
@@ -12,14 +19,14 @@ sudo usermod -aG docker ${USER}
 # Verificar instalación de Docker
 echo "Verificando instalación de Docker..."
 if ! command -v docker &> /dev/null; then
-  echo "Error: Docker no se instaló correctamente." | tee "$HOME/Desktop/docker_install_error.log"
+  echo "Error: Docker no se instaló correctamente." | tee "$ERROR_LOG"
   exit 1
 fi
 
 # Verificar instalación de Docker Compose
 echo "Verificando instalación de Docker Compose..."
 if ! docker compose version &> /dev/null; then
-  echo "Error: Docker Compose no se instaló correctamente." | tee -a "$HOME/Desktop/docker_install_error.log"
+  echo "Error: Docker Compose no se instaló correctamente." | tee -a "$ERROR_LOG"
   exit 1
 fi
 
