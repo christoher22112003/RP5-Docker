@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Variables
-ERROR_DIR="$(pwd)/logs"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ERROR_DIR="$SCRIPT_DIR/../logs"
 ERROR_LOG="$ERROR_DIR/install_pihole.log"
 
 # Colores
@@ -19,7 +20,6 @@ if ! command -v docker-compose &> /dev/null; then
 fi
 
 # Cambia al directorio donde está el archivo docker-compose.yml
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR/../Pi-hole"
 
 # Verifica si el archivo docker-compose.yml existe

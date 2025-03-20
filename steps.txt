@@ -13,6 +13,8 @@ Pasos realizados:
    - Todos los instaladores ahora generan logs en la carpeta `logs`.
    - Los logs se sobrescriben si ya existen.
 
+4. Se corrigieron las rutas en todos los scripts para que sean relativas dinámicas, asegurando que funcionen en cualquier ubicación del sistema.
+
 Archivos utilizados (rama principal `main`):
 - scripts/1Smain.sh
 - scripts/2Smain.sh

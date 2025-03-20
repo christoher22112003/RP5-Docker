@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # Variables
-ERROR_DIR="$(pwd)/errores"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ERROR_DIR="$SCRIPT_DIR/../logs"
 ERROR_LOG="$ERROR_DIR/install_docker.log"
 
-# Crear carpeta de errores si no existe
+# Crear carpeta de logs si no existe
 mkdir -p "$ERROR_DIR"
 
 # Instalar Docker

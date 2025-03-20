@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Variables
-ERROR_DIR="$(pwd)/logs"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ERROR_DIR="$SCRIPT_DIR/../logs"
 ERROR_LOG="$ERROR_DIR/errores_instalacion.log"
 
 # Colores
@@ -28,7 +29,7 @@ ejecutar_script() {
 }
 
 # Ejecutar la instalación de Docker
-ejecutar_script "./docker-setup/install-docker.sh"
+ejecutar_script "$SCRIPT_DIR/../docker-setup/install-docker.sh"
 
 # Reiniciar el sistema
 echo -e "${GREEN}Reiniciando el sistema para continuar con la instalación...${RESET}"

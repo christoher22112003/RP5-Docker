@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Variables
-ERROR_DIR="$(pwd)/errores"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ERROR_DIR="$SCRIPT_DIR/../logs"
 ERROR_LOG="$ERROR_DIR/verify_docker.log"
 
 # Colores
@@ -9,7 +10,7 @@ GREEN="\e[32m"
 RED="\e[31m"
 RESET="\e[0m"
 
-# Crear carpeta de errores si no existe
+# Crear carpeta de logs si no existe
 mkdir -p "$ERROR_DIR"
 
 # Verificar Docker ejecutando el contenedor hello-world

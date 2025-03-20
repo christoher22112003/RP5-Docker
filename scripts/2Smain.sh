@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Variables
-ERROR_DIR="$(pwd)/logs"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ERROR_DIR="$SCRIPT_DIR/../logs"
 ERROR_LOG="$ERROR_DIR/errores_instalacion.log"
 
 # Colores
@@ -28,12 +29,12 @@ ejecutar_script() {
 }
 
 # Verificar la instalación de Docker
-ejecutar_script "./docker-setup/verify-docker.sh"
+ejecutar_script "$SCRIPT_DIR/../docker-setup/verify-docker.sh"
 
 # Instalar Portainer
-ejecutar_script "./services/install_portainer.sh"
+ejecutar_script "$SCRIPT_DIR/../services/install_portainer.sh"
 
 # Instalar Pi-hole
-ejecutar_script "./services/install_pihole.sh"
+ejecutar_script "$SCRIPT_DIR/../services/install_pihole.sh"
 
 echo -e "${GREEN}Instalación completada con éxito.${RESET}"

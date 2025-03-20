@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Variables
-ERROR_DIR="$(pwd)/logs"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ERROR_DIR="$SCRIPT_DIR/../logs"
 ERROR_LOG="$ERROR_DIR/install_portainer.log"
 
 # Colores
