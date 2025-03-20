@@ -1,9 +1,6 @@
-Commit: Corrección de rutas dinámicas y mejoras en la generación de logs.
+Commit: Mostrar pasos internos en pantalla con color amarillo.
 
 Cambios realizados:
-1. Se corrigieron las rutas en todos los scripts (`1Smain.sh`, `2Smain.sh`, `install_docker.sh`, `verify_docker.sh`, `install_portainer.sh`, `install_pihole.sh`) para que sean relativas dinámicas, asegurando que funcionen en cualquier ubicación del sistema.
-2. Se actualizó `verify_docker.sh` para generar logs en la carpeta `logs`.
-3. Se actualizó `install_docker.sh` para generar logs en la carpeta `logs`.
-4. Se creó una carpeta `logs` para almacenar los logs de errores generados por los scripts de instalación.
-5. Se actualizó el archivo `steps.txt` para reflejar los cambios realizados.
-6. Se documentaron los archivos que deben eliminarse manualmente.
+1. Se actualizaron los scripts `install-docker.sh`, `verify-docker.sh`, `install_pihole.sh` y `install_portainer.sh` para que los pasos internos se reflejen en la pantalla con color amarillo.
+2. Se verificó que todos los scripts generen logs en la carpeta `logs`.
+3. Se documentaron los pasos realizados en el archivo `steps.txt`.

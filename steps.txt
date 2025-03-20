@@ -1,7 +1,7 @@
 Pasos realizados:
 
 1. Se ejecuta el archivo 1Smain.sh:
-   - Llama a docker-setup/install-docker.sh para instalar Docker.
+   - Llama a docker-setup/install-docker.sh para instalar Docker y Docker Compose.
    - Reinicia el sistema.
 
 2. Después del reinicio, se ejecuta el archivo 2Smain.sh:
@@ -14,6 +14,8 @@ Pasos realizados:
    - Los logs se sobrescriben si ya existen.
 
 4. Se corrigieron las rutas en todos los scripts para que sean relativas dinámicas, asegurando que funcionen en cualquier ubicación del sistema.
+
+5. Se corrigió el script `install-docker.sh` para instalar Docker Compose si no está instalado.
 
 Archivos utilizados (rama principal `main`):
 - scripts/1Smain.sh

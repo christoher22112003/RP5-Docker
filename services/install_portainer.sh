@@ -8,17 +8,18 @@ ERROR_LOG="$ERROR_DIR/install_portainer.log"
 # Colores
 GREEN="\e[32m"
 RED="\e[31m"
+YELLOW="\e[33m"
 RESET="\e[0m"
 
 # Crear carpeta de logs si no existe
 mkdir -p "$ERROR_DIR"
 
 # Crear volumen Docker para Portainer
-echo -e "${GREEN}Creando volumen Docker para Portainer...${RESET}"
+echo -e "${YELLOW}Creando volumen Docker para Portainer...${RESET}"
 docker volume create portainer_data >> "$ERROR_LOG" 2>&1
 
 # Descargar e instalar el contenedor Portainer
-echo -e "${GREEN}Descargando e instalando el contenedor Portainer...${RESET}"
+echo -e "${YELLOW}Descargando e instalando el contenedor Portainer...${RESET}"
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v portainer_data:/data portainer/portainer-ce:latest >> "$ERROR_LOG" 2>&1

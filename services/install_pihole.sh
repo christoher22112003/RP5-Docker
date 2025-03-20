@@ -8,28 +8,32 @@ ERROR_LOG="$ERROR_DIR/install_pihole.log"
 # Colores
 GREEN="\e[32m"
 RED="\e[31m"
+YELLOW="\e[33m"
 RESET="\e[0m"
 
 # Crear carpeta de logs si no existe
 mkdir -p "$ERROR_DIR"
 
 # Verifica si docker-compose está instalado
+echo -e "${YELLOW}Verificando si docker-compose está instalado...${RESET}"
 if ! command -v docker-compose &> /dev/null; then
-  echo "docker-compose no está instalado. Por favor, instálalo antes de continuar."
+  echo -e "${RED}docker-compose no está instalado. Por favor, instálalo antes de continuar.${RESET}"
   exit 1
 fi
 
 # Cambia al directorio donde está el archivo docker-compose.yml
+echo -e "${YELLOW}Cambiando al directorio del archivo docker-compose.yml...${RESET}"
 cd "$SCRIPT_DIR/../Pi-hole"
 
 # Verifica si el archivo docker-compose.yml existe
+echo -e "${YELLOW}Verificando si el archivo docker-compose.yml existe...${RESET}"
 if [ ! -f "docker-compose.yml" ]; then
-  echo "El archivo docker-compose.yml no se encuentra en el directorio actual."
+  echo -e "${RED}El archivo docker-compose.yml no se encuentra en el directorio actual.${RESET}"
   exit 1
 fi
 
 # Construye e inicia el contenedor de Pi-hole
-echo -e "${GREEN}Iniciando la instalación del contenedor de Pi-hole...${RESET}"
+echo -e "${YELLOW}Iniciando la instalación del contenedor de Pi-hole...${RESET}"
 docker-compose up -d >> "$ERROR_LOG" 2>&1
 
 # Verifica si el contenedor se inició correctamente
