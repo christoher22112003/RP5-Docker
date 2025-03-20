@@ -24,3 +24,10 @@ if ! command -v docker &> /dev/null; then
 fi
 
 echo "Docker se instaló correctamente." | tee -a "$ERROR_LOG"
+
+# Verificar instalación de Docker Compose
+echo "Verificando instalación de Docker Compose..."
+if ! docker compose version &> /dev/null; then
+  echo "Error: Docker Compose no se instaló correctamente." | tee -a "$ERROR_LOG"
+  exit 1
+fi

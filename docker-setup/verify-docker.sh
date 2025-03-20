@@ -4,14 +4,19 @@
 ERROR_DIR="$(pwd)/errores"
 ERROR_LOG="$ERROR_DIR/verify_docker.log"
 
+# Colores
+GREEN="\e[32m"
+RED="\e[31m"
+RESET="\e[0m"
+
 # Crear carpeta de errores si no existe
 mkdir -p "$ERROR_DIR"
 
 # Verificar Docker ejecutando el contenedor hello-world
-echo "Verificando Docker ejecutando el contenedor hello-world..." | tee -a "$ERROR_LOG"
+echo -e "${GREEN}Verificando Docker ejecutando el contenedor hello-world...${RESET}"
 if docker run hello-world >> "$ERROR_LOG" 2>&1; then
-  echo "Docker está funcionando correctamente." | tee -a "$ERROR_LOG"
+    echo -e "${GREEN}Docker está funcionando correctamente.${RESET}"
 else
-  echo "Error: Docker no está funcionando correctamente." | tee -a "$ERROR_LOG"
-  exit 1
+    echo -e "${RED}Error: Docker no está funcionando correctamente.${RESET}"
+    exit 1
 fi

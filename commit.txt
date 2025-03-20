@@ -1,0 +1,9 @@
+Commit: Reorganización y mejoras en la estructura del proyecto.
+
+Cambios realizados:
+1. Se corrigieron las rutas en los scripts `1Smain.sh` y `2Smain.sh` para reflejar la nueva estructura de carpetas.
+2. Se actualizó `install_pihole.sh` para generar logs en la carpeta `logs` y manejar errores correctamente.
+3. Se actualizó `install_portainer.sh` para generar logs en la carpeta `logs` y manejar errores correctamente.
+4. Se creó una carpeta `logs` para almacenar los logs de errores generados por los scripts de instalación.
+5. Se actualizó el archivo `steps.txt` para reflejar los cambios realizados.
+6. Se documentaron los archivos que deben eliminarse manualmente.

@@ -6,17 +6,26 @@ Pasos realizados:
 
 2. Después del reinicio, se ejecuta el archivo 2Smain.sh:
    - Llama a docker-setup/verify-docker.sh para verificar la instalación de Docker.
-   - Llama a install_portainer.sh para instalar Portainer.
-   - Llama a install_pihole.sh para instalar Pi-hole.
+   - Llama a services/install_portainer.sh para instalar Portainer.
+   - Llama a services/install_pihole.sh para instalar Pi-hole.
 
-Archivos utilizados:
-- 1Smain.sh
-- 2Smain.sh
+3. Se creó una carpeta `logs` para almacenar los logs de errores generados por los scripts de instalación:
+   - Todos los instaladores ahora generan logs en la carpeta `logs`.
+   - Los logs se sobrescriben si ya existen.
+
+Archivos utilizados (rama principal `main`):
+- scripts/1Smain.sh
+- scripts/2Smain.sh
 - docker-setup/install-docker.sh
 - docker-setup/verify-docker.sh
-- install_portainer.sh
-- install_pihole.sh
+- services/install_portainer.sh
+- services/install_pihole.sh
 
-Archivos eliminados:
-- main.sh
-- continue-installation.sh
+Archivos que debes eliminar manualmente (rama duplicada o no utilizada):
+- `install-portainer.sh` (duplicado de `install_portainer.sh`, rama desconocida)
+- `main.sh` (ya no se utiliza, rama desconocida)
+- `continue-installation.sh` (ya no se utiliza, rama desconocida)
+- `docker-test.service` (si fue creado previamente, ya no es necesario, rama desconocida)
+
+Archivos que no debes eliminar:
+- Todos los archivos listados en "Archivos utilizados" en la rama `main`.

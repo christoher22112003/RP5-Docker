@@ -22,12 +22,17 @@ Este repositorio contiene un script que simplifica la configuración de tu Raspb
    cd RP5-Docker
    ```
 
-2. **Ejecuta el script**:
+2. **Ejecuta el script principal**:
    ```bash
-   ./install.sh
+   ./scripts/1Smain.sh
    ```
 
-3. Sigue las instrucciones en pantalla para configurar los servicios.
+3. Después del reinicio, ejecuta:
+   ```bash
+   ./scripts/2Smain.sh
+   ```
+
+4. Sigue las instrucciones en pantalla para configurar los servicios.
 
 ---
 
