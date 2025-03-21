@@ -42,6 +42,18 @@ while IFS= read -r url; do
         continue
     fi
 
+    echo "Procesando URL: $url" | tee -a "$ERROR_LOG"
+
+    # Verificar si la URL ya existe en la base de datos
+    EXISTS=$(docker exec -it pihole sqlite3 /etc/pihole/gravity.db \
+        "SELECT COUNT(*) FROM adlist WHERE address = '$url';" | tr -d '\r')
+
+    if [ "$EXISTS" -gt 0 ]; then
+        echo "La URL ya existe en la base de datos: $url" | tee -a "$ERROR_LOG"
+        continue
+    fi
+
+    # Intentar agregar la URL a la base de datos
     echo "Agregando URL: $url" | tee -a "$ERROR_LOG"
     docker exec -it pihole sqlite3 /etc/pihole/gravity.db \
         "INSERT INTO adlist (address, enabled, date_added, date_updated, comment) VALUES ('$url', 1, strftime('%s','now'), strftime('%s','now'), 'Lista personalizada');" >> "$ERROR_LOG" 2>&1
