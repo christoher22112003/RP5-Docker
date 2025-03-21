@@ -19,17 +19,20 @@ Este repositorio contiene un script que simplifica la configuración de tu Raspb
 1. **Clona este repositorio** en tu Raspberry Pi 5:
    ```bash
    git clone https://github.com/tu-usuario/RP5-Docker.git
-   cd RP5-Docker
    ```
 
 2. **Ejecuta el script principal**:
    ```bash
-   ./scripts/1Smain.sh
+   cd RP5-Docker/scripts
+   chmod +x 1Smain.sh
+   ./ 1Smain.sh
    ```
 
 3. Después del reinicio, ejecuta:
    ```bash
-   ./scripts/2Smain.sh
+   cd RP5-Docker/scripts
+   chmod +x 2Smain.sh
+   ./ 2Smain.sh
    ```
 
 4. Sigue las instrucciones en pantalla para configurar los servicios.
