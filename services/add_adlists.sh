@@ -48,6 +48,12 @@ while IFS= read -r url; do
 
     if [ $? -ne 0 ]; then
         echo "Error: No se pudo agregar la URL $url a la base de datos." | tee -a "$ERROR_LOG"
+
+        # Crear un archivo de log específico para errores de URLs
+        URL_ERROR_LOG="$ERROR_DIR/add_adlists_errors.log"
+        echo "Error al agregar URL: $url" >> "$URL_ERROR_LOG"
+        echo "Consulta SQL fallida: INSERT INTO adlist (address, enabled, date_added, date_updated, comment) VALUES ('$url', 1, strftime('%s','now'), strftime('%s','now'), 'Lista personalizada');" >> "$URL_ERROR_LOG"
+        echo "----------------------------------------" >> "$URL_ERROR_LOG"
     fi
 done < "$URLS_FILE"
 

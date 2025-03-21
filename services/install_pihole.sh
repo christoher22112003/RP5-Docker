@@ -44,32 +44,21 @@ docker-compose up -d >> "$ERROR_LOG" 2>&1
 
 # Verifica si el contenedor se inició correctamente
 if [ $? -eq 0 ]; then
-  echo "Pi-hole se instaló correctamente."
+  echo "Pi-hole se instaló correctamente." | tee -a "$ERROR_LOG"
 else
-  echo "Error al instalar Pi-hole. Revisa $ERROR_LOG para más detalles."
+  echo "Error al instalar Pi-hole. Revisa $ERROR_LOG para más detalles." | tee -a "$ERROR_LOG"
 
   # Obtiene el nombre del contenedor de Pi-hole
   CONTAINER_NAME=$(docker ps -a --filter "name=pihole" --format "{{.Names}}")
 
   # Verifica si el contenedor existe
   if [ -n "$CONTAINER_NAME" ]; then
-    echo "Recopilando logs del contenedor..."
-    LOGS=$(docker logs "$CONTAINER_NAME" 2>&1)
+    echo "Recopilando logs del contenedor..." | tee -a "$ERROR_LOG"
+    docker logs "$CONTAINER_NAME" >> "$ERROR_LOG" 2>&1
   else
-    LOGS="El contenedor de Pi-hole no se creó correctamente."
+    echo "El contenedor de Pi-hole no se creó correctamente." | tee -a "$ERROR_LOG"
   fi
 
-  # Define la ruta al escritorio del usuario
-  DESKTOP_DIR="$HOME/Escritorio"
-  if [ ! -d "$DESKTOP_DIR" ]; then
-    DESKTOP_DIR="$HOME/Desktop"
-  fi
-
-  # Crea el archivo de texto con los errores
-  ERROR_FILE="$DESKTOP_DIR/pihole_error_logs.txt"
-  echo "$LOGS" > "$ERROR_FILE"
-
-  echo "Los errores se han guardado en: $ERROR_FILE"
   exit 1
 fi
 sleep 3
