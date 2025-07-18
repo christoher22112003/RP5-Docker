@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:11.3.2
+    container_name: nextcloud_db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: RQGqRc!%YIX09X  # Contraseña del root de MariaDB
+      MARIADB_DATABASE: nextcloud_db
+      MARIADB_USER: nextcloud_user
+      MARIADB_PASSWORD: PE9E^ZGo4%JxpF       # Es la misma contraseña que en nextcloud-compose.yml para el usuario MYSQL_PASSWORD
+      MARIADB_INITDB_SKIP_TZINFO: 1
+    volumes:
+      - /mnt/nextcloud/mariadb:/var/lib/mysql
+    networks:
+      nextcloud_net:
+        ipv4_address: 172.22.1.2
+    command:
+      - --innodb-use-native-aio=0
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_general_ci
+
+networks:
+  nextcloud_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.22.1.0/24

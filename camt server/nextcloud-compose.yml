@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  nextcloud:
+    image: nextcloud:28.0.4-apache
+    container_name: nextcloud_app
+    restart: unless-stopped
+    depends_on:
+      - mariadb
+      - redis
+    ports:
+      - "8080:80"
+    environment:
+      NEXTCLOUD_TRUSTED_DOMAINS: 192.168.110.149
+      MYSQL_HOST: 172.22.1.2       # IP estática de MariaDB
+      MYSQL_DATABASE: nextcloud_db
+      MYSQL_USER: nextcloud_user
+      MYSQL_PASSWORD: PE9E^ZGo4%JxpF # Es la misma contraseña que en mariadb-compose.yml para el usuario MARIADB_PASSWORD
+      NEXTCLOUD_ADMIN_USER: admin # Usuario administrador de Nextcloud
+      NEXTCLOUD_ADMIN_PASSWORD: yRGe%zldW!oG%3  # Contraseña del administrador de Nextcloud
+      REDIS_HOST: 172.22.1.3        # IP estática de Redis
+      PHP_MEMORY_LIMIT: 1G
+      APACHE_DISABLE_REWRITE_IP: 1
+    volumes:
+      - /mnt/nextcloud/appdata:/var/www/html
+      - ./php-config.ini:/usr/local/etc/php/conf.d/nextcloud-custom.ini
+
+networks:
+  nextcloud_net:
+    external: true
+    name: nextcloud_nextcloud_net

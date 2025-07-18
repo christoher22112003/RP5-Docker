@@ -18,7 +18,7 @@ Este repositorio contiene un script que simplifica la configuración de tu Raspb
 
 1. **Clona este repositorio** en tu Raspberry Pi 5:
    ```bash
-   git clone https://github.com/tu-usuario/RP5-Docker.git
+   git clone https://github.com/christoher22112003/RP5-Docker.git
    ```
 
 2. **Ejecuta el script principal**:
